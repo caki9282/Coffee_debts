@@ -12,7 +12,7 @@ Assumptions made:
 - each person knows their coffee amount
 - tax is not a factor to worry about
 - A coworker can pay multiple weeks in a row.
---------------------------------Data------------------------------------------
+----------------------------Data---------------------------------
 Pre-Existing Accounts (data):
 User: Calvin (admin)
 Username: Calvin
@@ -33,7 +33,7 @@ Password: biki1234
 User: Suchi
 Username: Suchi
 Password: sushi123
----------------------How to build and run the solution---------------------------
+-----------How to build and run the solution-----------------
 How to build and run the program:
 - Make sure Django is installed:
   - if Django is not installed then follow this guide to install it.
@@ -60,7 +60,7 @@ How to build and run the program:
   - use user Calvin to log in to the admin page.
 - Once you're done or want to switch accounts just click Logout in the top right corner!
   
---------------------------------Project Features-----------------------------------
+----------------------Project Features----------------
 Features:
 - Home Page:
   - click the submit button to show the cost-fillable area
