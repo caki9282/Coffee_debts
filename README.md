@@ -12,7 +12,11 @@ Assumptions made:
 - each person knows their coffee amount
 - tax is not a factor to worry about
 - A coworker can pay multiple weeks in a row.
-  
+
+Tid-Bit:
+This was developed in Django, I wanted to go above and beyond for this code challenge and create a Full-stack project. So after doing some research, I came across Django. I have never used Django but was familiar with Python, HTML, CSS, and JavaScript so I took it
+upon myself to attempt to learn how to develop on Django to provide you guys with an exceptional GUI rather than a more simple CDL.
+
 ----------------------------Data---------------------------------
 
 Pre-Existing Accounts (data):
