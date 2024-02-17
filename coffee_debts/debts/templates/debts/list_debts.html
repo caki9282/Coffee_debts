@@ -1,0 +1,117 @@
+{% comment %} {% extends 'debts/base.html' %} {% endcomment %}
+<style>
+    body {
+        background-image: url('/static/photos/table.jpg'); 
+        background-size: cover; 
+        background-position: center; 
+        background-repeat: no-repeat; 
+      }
+    
+
+</style>
+<style>
+    body, html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    .page-container {
+        position: relative;
+        max-height: 100vh;
+        overflow-y: auto; 
+    }
+
+    header, footer {
+        text-align: center;
+        padding: 20px;
+        width: 100%;
+        position: fixed;
+        background-color: #f8f9fa;
+    }
+
+    header {
+        top: 0;
+    }
+
+    footer {
+        bottom: 0;
+        width: 100%;
+        position: fixed;
+    }
+
+
+    .form-overlay {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        display: flex;
+        flex-direction: column; 
+        align-items: start;
+        align-items: flex-start;
+        padding-top: 20px;
+        width: 50%;
+        max-width: 600px;
+    }
+    .user-debts {
+        max-width: 800px;
+        margin: 0 auto;
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        padding: 20px;
+    }
+    .user-debts > div {
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+    }
+    h2 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 20px;
+    }
+    h3 {
+        color: #555;
+    }
+    p {
+        color: #666;
+    }
+    
+</style>
+{% load static %} 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Debts</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="{% static 'myapp/css/styles.css' %}" rel="stylesheet">
+</head>
+<body>
+    <div class="page-container">
+        {% include 'debts/header.html' %}
+        <h2>User Debts</h2>
+        <div class="user-debts">
+            {% for user_debt in users_debts %}
+                <div>
+                    <h3>{{ user_debt.user.username }}'s Debts</h3>
+                    <p>Total Debt: {{ user_debt.total_debt }}</p>
+                </div>
+            {% empty %}
+                <p>No debts recorded.</p>
+            {% endfor %}
+        </div>
+    </div>
+
+</body>
+</html>
+

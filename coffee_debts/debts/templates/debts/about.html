@@ -1,0 +1,129 @@
+{% comment %} {% extends 'debts/base.html' %} {% endcomment %}
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-image: url('/static/photos/table.jpg');
+        background-size: cover;
+        background-position: center;
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; 
+    }
+
+    .page-container {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        background-color: rgba(255, 255, 255, 0.8); 
+    }
+
+    header, footer {
+        text-align: center;
+        flex-shrink: 0;
+        padding: 20px;
+        width: 100%;
+        position: fixed;
+        background-color: #f8f9fa;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+        z-index: 1000; 
+    }
+
+    header {
+        top: 0;
+    }
+
+    footer {
+        bottom: 0;
+    }
+
+    .custom-container2 {
+        background-color: #ffffff;
+        border-radius: 10px;
+        padding: 2vw; 
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        margin: 5vh auto; 
+        width: 90%; 
+        max-width: 600px; 
+        backdrop-filter: blur(10px);
+        overflow-y: auto; 
+        max-height: 80vh; 
+    }
+
+    button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 12px 24px; 
+        border-radius: 80px;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.2s; 
+        font-weight: bold; 
+    }
+
+    button:hover {
+        background-color: #0056b3;
+        transform: translateY(-2px); 
+    }
+
+    h2 {
+        color: #333; 
+        margin-bottom: 20px; /
+    }
+
+    form {
+        margin-bottom: 30px; 
+    }
+
+    input[type="number"], select, textarea {
+        width: 100%;
+        padding: 10px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        background-color: #f8f8f8;
+        font-size: 16px;
+    }
+    
+    input[type="number"]:focus, select:focus, textarea:focus {
+        border-color: #4A90E2;
+        outline: none;
+        box-shadow: 0 0 5px rgba(74, 144, 226, 0.5);
+    }
+
+    @media (max-width: 768px) {
+        .custom-container2 {
+            padding: 4vw; 
+            margin: 10vh auto; 
+        }
+    
+</style>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Coffee Calc!</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    {% include 'debts/header.html' %}
+    {% block content %}
+    <div class="custom-container2">
+        <h2>Add Coffee Costs</h2>
+        <form method="POST" action="{% url 'add_coffee_costs' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" id="aboutsubmitbtn">Submit</button>
+        </form>
+        <div class="resmess">
+            <p>{{ message }}</p>
+        </div>
+    </div>
+    {% endblock %}
+</body>
+</html>

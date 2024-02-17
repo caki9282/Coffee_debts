@@ -1,0 +1,156 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Coffee Calc!</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .page-container {
+            position: relative;
+            height: 100vh;
+        }
+
+        header, footer {
+            text-align: center;
+            padding: 20px;
+            width: 100%;
+            position: fixed;
+            background-color: #f8f9fa;
+        }
+
+        header {
+            top: 0;
+        }
+
+        footer {
+            bottom: 0;
+        }
+
+        .video-container, .form-overlay {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: -1; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .form-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column; 
+            align-items: start;
+            align-items: flex-start;
+            padding-top: 20px;
+            width: 50%;
+            max-width: 600px;
+        }
+
+        .overlay-content {
+            text-align: center; 
+            max-width: 500px; 
+            margin: 0 auto; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+          }
+
+        .form-overlay h2 {
+            margin-bottom: 40px; 
+            color: black; 
+            font-size: 40px; 
+        }
+        
+        .form-overlay form > div {
+            margin-bottom: 15px;
+        }
+        
+        .form-overlay button {
+            margin-top: 20px;
+            background-color: #f8f9fa;
+        }
+        
+        .form-overlay input,
+        .form-overlay select,
+        .form-overlay .cost-box { 
+            width: 100%; 
+            padding: 10px; 
+            margin-bottom: 30px; 
+            border: 1px solid #ccc; 
+            border-radius: 4px; 
+        }
+        
+        #cost-btn{
+            color: black;
+        }
+
+        #background-video {
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        {% include 'debts/header.html' %}
+
+        <div class="video-container">
+            <video autoplay muted loop id="background-video">
+                <source src="{% static 'videos/coffeeshop.mp4' %}" type="video/mp4">
+            </video>
+        </div>
+    
+        <div class="form-overlay">
+            <div class="overlay-content">
+            <h2>Add a new coffee purchase</h2>
+                <form method="POST" action="{% url 'add_coffee' %}">
+                    {% csrf_token %}
+                    <div>
+                        {{ form.cost.label_tag }}
+                        {{ form.cost }}
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="cost-btn">Submit Purchase</button>
+                </form>
+            </div>
+        </div>
+
+
+    </div>
+    {% include 'debts/footer.html' %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var video = document.getElementById('background-video'); 
+            var duration = 4500; 
+   
+            setTimeout(function() {
+                video.pause(); 
+                video.removeAttribute('loop'); 
+            }, duration);
+        });
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.9/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
